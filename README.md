@@ -1,24 +1,8 @@
-# README
+## 勤怠システム（B）開発
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  勤怠Bの個人開発課題では、これまで以上に実際の開発をイメージするためチュートリアルの段階ではなかった機能を追加実装していただきます。
+  追加する機能は簡単なものから、これまでの学習内容を応用しなければならないもの、調べて実装しなければならないものもあります。
+  機能は詳細まで載せるので、頑張って実装してみましょう！
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  追加機能のリストは、上が簡単〜下に行くにつれて基本的には難易度が上がっていきますので順番に挑戦してみてくださいね。
+  （中には中盤でも簡単に実装できてしまうものもあります）

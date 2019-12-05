@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   
   attr_accessor :remember_token
-  before_save { self.email = emial.downcase }
+  before_save { self.email = email.downcase }
   
   validates :name, presence: true, length: { maximum: 50 }
   
@@ -10,7 +10,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   def User.digest(string)
     cost =

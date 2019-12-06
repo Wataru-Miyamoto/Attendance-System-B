@@ -23,10 +23,21 @@
   margin-top: 10px;
 }
 
-/* ユーザー一覧ページ */
+/* users_index */
 
 #table-users {
   td {
     vertical-align: middle;
   }
+}
+
+/* editing_modal */
+
+.label-basic-info {
+  margin-top: 5px;
+}
+
+.btn-basic-info {
+  margin: 15px 0;
+  width: 30%;
 }

@@ -1,8 +1,21 @@
-/* user_info_table */
+/* users_info_table */
 
 .user-table {
   vertical-align: middle;
   text-align: center;
+}
+
+/* users_attendance_table */
+
+#table-attendances {
+  th {
+    vertical-align: middle;
+    text-align: center;
+  }
+  td {
+    vertical-align: middle;
+    text-align: center;
+  }
 }
 
 /* input_form */

@@ -39,7 +39,7 @@
     </thead>
 
     <tbody>
-      <% (@first_day..@last_day).each do |day| %>
+      <% (@attendances).each do |day| %>
         <tr>
           <td><%= l(day.worked_on, format: :short) %></td>
           <td><%= $days_of_the_week[day.worked_on.wday] %></td>

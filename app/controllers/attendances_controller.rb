@@ -15,7 +15,7 @@ class AttendancesController < ApplicationController
       else
         flash[:danger] = UPDATE_ERROR_MSG
       end
-    elsif @attendance.finish_at.nil?
+    elsif @attendance.finished_at.nil?
       if @attendance.update_attributes(finished_at: Time.current.change(sec: 0))
         flash[:info] = "お疲れ様でした。"
       else
@@ -30,7 +30,7 @@ class AttendancesController < ApplicationController
   
   def update_one_month
     ActiveRecord::Base.transaction do
-      attedances_params.each do |id, item|
+      attendances_params.each do |id, item|
         attendance = Attendance.find(id)
         attendance.update_attributes!(item)
       end

@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
+  before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :admin_or_correct_user, only: [:show, :edit, :update]
   before_action :set_one_month, only: :show
   
   def index
@@ -50,11 +51,14 @@ class UsersController < ApplicationController
   end
   
   def update_basic_info
-    if @user.update_attributes(basic_info_params)
-      flash[:success] = "#{@user.name}の基本情報を更新しました。"
-    else
-      flash[:danger] = "#{@user.name}の更新は失敗しました。<br>" + @user.errors.full_messages.join("<br>")
-    end
+    @users = User.all
+      @users.each do |users|
+        if users.update_attributes(basic_info_params)
+          flash[:success] = "基本情報を更新しました。"
+        else
+          flash[:danger] = "更新が失敗しました。<br>" + @user.errors.full_messages.join("<br>")
+        end
+      end
     redirect_to users_url
   end
 
@@ -65,7 +69,15 @@ class UsersController < ApplicationController
     end
     
     def basic_info_params
-      params.require(:user).permit(:department, :basic_time, :work_time)
+      params.require(:user).permit(:basic_time, :work_time)
     end
+    
+    def admin_or_correct_user
+    @user = User.find(params[:id]) if @user.blank?
+    unless current_user?(@user) || current_user.admin?
+      flash[:danger] = "アクセス権限がありません。"
+      redirect_to(root_url)
+    end
+  end
 
 end

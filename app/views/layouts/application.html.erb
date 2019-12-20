@@ -11,8 +11,7 @@
 
     <%= render 'layouts/shim' %>
   </head>
-  <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
-
+  <body>
     <%= render 'layouts/header' %>
     <div class="container">
       <% flash.each do |message_type, msg| %>

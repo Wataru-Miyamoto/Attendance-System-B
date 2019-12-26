@@ -7,6 +7,11 @@ class UsersController < ApplicationController
   before_action :set_one_month, only: :show
   
   def index
+    @user = User.search(params[:search])
+    @title = "ユーザー一覧"
+      if params.has_key?(:search)
+        @title = "検索結果"
+      end
     @users = User.paginate(page: params[:page])
   end
   
@@ -61,11 +66,14 @@ class UsersController < ApplicationController
       end
     redirect_to users_url
   end
+  
+  def search
+  end
 
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :department, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :department, :password, :password_confirmation, :search)
     end
     
     def basic_info_params
@@ -74,10 +82,10 @@ class UsersController < ApplicationController
     
     def admin_or_correct_user
     @user = User.find(params[:id]) if @user.blank?
-    unless current_user?(@user) || current_user.admin?
-      flash[:danger] = "アクセス権限がありません。"
-      redirect_to(root_url)
+      unless current_user?(@user) || current_user.admin?
+        flash[:danger] = "アクセス権限がありません。"
+        redirect_to(root_url)
+      end
     end
-  end
 
 end
